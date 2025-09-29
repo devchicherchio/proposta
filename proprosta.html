@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Proposta — Gateway de Pagamentos + Analytics (Asaas)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0b1220; --card:#0f182a; --muted:#93a4bf; --text:#e9f0ff; --brand:#58a6ff; --accent:#94c53f;
+      --border:rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial; background:linear-gradient(180deg,#0b1220,#0a0f1a); color:var(--text)}
+    .container{max-width:1050px; margin:0 auto; padding:32px 20px 80px}
+    .card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px; margin-bottom:20px}
+    h1{font-size:32px; margin-bottom:10px}
+    h2{font-size:22px; margin-bottom:10px}
+    h3{font-size:16px; margin:10px 0; color:#cbd6eb}
+    p{color:var(--muted); font-size:14.5px; line-height:1.6}
+    ul{padding-left:18px; margin:8px 0}
+    li{margin:6px 0; color:var(--text)}
+    .table-responsive{width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:12px; border:1px solid var(--border)}
+    .table{width:100%; min-width:640px; border-collapse:collapse}
+    .table th,.table td{font-size:14px; padding:12px; border-bottom:1px solid var(--border); text-align:center}
+    .table th{color:#cbd6eb; font-weight:600; background:rgba(255,255,255,.03)}
+    .table tfoot td{font-weight:700}
+    .divider{height:1px; background:var(--border); margin:18px 0}
+    .price{font-size:32px; font-weight:800; margin:10px 0}
+    .note{font-size:12.5px; color:#9fb0d1}
+    .footer{opacity:.8; font-size:12.5px; text-align:center; margin-top:34px}
+    .timeline{position:relative; padding-left:28px; margin-top:10px}
+    .timeline::before{content:""; position:absolute; top:0; left:12px; width:4px; height:100%; background:var(--border); border-radius:2px}
+    .step{position:relative; margin-bottom:22px}
+    .step::before{content:""; position:absolute; left:-18px; top:6px; width:14px; height:14px; background:var(--accent); border-radius:50%; border:2px solid #0b1220}
+    .step h4{margin:0 0 4px; font-size:15px; color:#e0e7ff}
+    .step p{margin:0; font-size:13.5px; color:var(--muted)}
+    /* ===== Responsivo (mobile-first tweaks) ===== */
+    @media (max-width: 720px){
+      .container{padding:22px 14px 56px}
+      h1{font-size:26px}
+      h2{font-size:19px}
+      h3{font-size:15px}
+      p, .table th, .table td{font-size:13.5px}
+      .price{font-size:26px}
+      .card{padding:16px}
+      .timeline{padding-left:22px}
+      .timeline::before{left:9px}
+      .step::before{left:-16px; width:12px; height:12px}
+    }
+    @media (max-width: 420px){
+      h1{font-size:22px}
+      h2{font-size:18px}
+      .price{font-size:24px}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="card">
+      <h1>Proposta de Implantação — Gateway de Pagamentos + Analytics</h1>
+      <p>O objetivo deste projeto é criar uma solução robusta de monetização para o sistema, permitindo que usuários realizem pagamentos de forma recorrente por cartão, Pix e boleto, e que a empresa tenha uma visão clara e confiável de suas métricas financeiras.</p>
+    </section>
+
+    <section class="card">
+      <h2>Visão Geral</h2>
+      <p>Será desenvolvido um módulo completo que não apenas processa pagamentos, mas também entrega inteligência para tomada de decisão. A proposta contempla:</p>
+      <ul>
+        <li>Integração com o gateway Asaas (cartão, Pix e boleto).</li>
+        <li>Gerenciamento de planos, assinaturas e faturas.</li>
+        <li>Recepção e tratamento de webhooks de pagamento.</li>
+        <li>Regras de cobrança (retentativas, bloqueios, upgrades/downgrades).</li>
+        <li>Dashboard analítico com indicadores de receita e inadimplência.</li>
+        <li>Mini P&L com visão simplificada do resultado mensal.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Escopo Detalhado</h2>
+      <div>
+        <h3>1. Integração de Pagamentos</h3>
+        <ul>
+          <li>Assinaturas no cartão, Pix e boleto via API do Asaas.</li>
+          <li>Criação de clientes, planos e faturas automáticas.</li>
+          <li>Tratamento seguro de webhooks (pagamento realizado, falha, cancelamento).</li>
+        </ul>
+        <h3>2. Backoffice & Gestão</h3>
+        <ul>
+          <li>Painel de administração para gerenciar usuários e planos.</li>
+          <li>Relatórios exportáveis (CSV/XLSX).</li>
+          <li>Controle de permissões e auditoria.</li>
+        </ul>
+        <h3>3. Analytics & P&L</h3>
+        <ul>
+          <li>KPIs: receita recorrente mensal (MRR), churn, inadimplência.</li>
+          <li>Relatórios de aging de faturas e taxas de estorno.</li>
+          <li>Visão simplificada de P&L mensal.</li>
+        </ul>
+        <h3>4. Qualidade & Segurança</h3>
+        <ul>
+          <li>Testes unitários e de integração nos pontos críticos.</li>
+          <li>Idempotência e segurança no consumo de webhooks.</li>
+          <li>Logs estruturados e trilha de auditoria.</li>
+          <li>LGPD: minimização e retenção correta de dados pessoais.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Divisão de Horas (100h)</h2>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr><th>Bloco</th><th>Descrição</th><th>Horas</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Integração Asaas + Webhooks</td><td>Clientes, planos, assinaturas, faturas e reconciliação.</td><td>25h</td></tr>
+            <tr><td>Modelagem</td><td>Domínio de planos/assinaturas/invoices e regras de cobrança.</td><td>12h</td></tr>
+            <tr><td>Front-end</td><td>Checkout, dashboards analíticos e relatórios.</td><td>43h</td></tr>
+            <tr><td>Testes e Deploy</td><td>QA, monitoração e go-live.</td><td>15h</td></tr>
+            <tr><td>Documentação</td><td>Runbook e treinamento.</td><td>5h</td></tr>
+          </tbody>
+          <tfoot>
+            <tr><td colspan="2">Total</td><td>100h</td></tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Linha do Tempo de Entrega</h2>
+      <div class="timeline">
+        <div class="step">
+          <h4>Semana 1</h4>
+          <p>Setup inicial, criação de modelos (planos, assinaturas, invoices) e configuração do ambiente.</p>
+        </div>
+        <div class="step">
+          <h4>Semana 2</h4>
+          <p>Integração com API Asaas (cartão, Pix, boleto) + implementação de webhooks e conciliação.</p>
+        </div>
+        <div class="step">
+          <h4>Semana 3</h4>
+          <p>Desenvolvimento do front-end: checkout, dashboards analíticos e relatórios.</p>
+        </div>
+        <div class="step">
+          <h4>Semana 4</h4>
+          <p>Testes completos, ajustes finais, documentação (runbook) e treinamento rápido.</p>
+        </div>
+        <div class="step">
+          <h4>Go-Live</h4>
+          <p>Homologação, deploy em produção e monitoramento pós-entrega.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Investimento</h2>
+      <p><strong>Valor hora praticado:</strong> R$ 80,00</p>
+      <p><strong>Valor do projeto (100h):</strong> <span class="price">R$ 8.000</span></p>
+      <p>Possibilidade de parcelamento no cartão em até <strong>12x</strong> (com juros da maquininha).</p>
+      <p>Este valor é significativamente menor do que a média de mercado para um projeto desta complexidade.</p>
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr><th>Comparativo</th><th>Preço de Mercado</th><th>Preço Proposto</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Freelancers sênior</td>
+              <td>R$ 12.000 – 25.000</td>
+              <td rowspan="2"><strong>R$ 8.000</strong></td>
+            </tr>
+            <tr>
+              <td>Agências/consultorias</td>
+              <td>R$ 15.000 – 30.000+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="divider"></div>
+      <h3>Pós-entrega (Contrato Anual)</h3>
+      <p><strong>Mensalidade:</strong> R$ 2.000 (contrato anual). Inclui 30h mín/mês: 15h manutenção + 15h novas funcionalidades.<br>
+      <strong>Valor hora reduzido:</strong> R$ 66,00 (desconto por contrato anual).<br>
+      Excedente acima de 30h: R$ 66/h.</p>
+      <p class="note">O contrato anual garante estabilidade, previsibilidade de custos e continuidade na evolução do sistema.</p>
+    </section>
+
+    <p class="footer">© <span id="year"></span> — Proposta de implantação de pagamentos e analytics (Asaas)</p>
+  </div>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
